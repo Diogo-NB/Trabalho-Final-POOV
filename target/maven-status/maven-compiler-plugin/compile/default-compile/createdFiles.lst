@@ -1,9 +1,9 @@
 poov/controle_vacinacao/modelo/dao/DAOFactory.class
+poov/controle_vacinacao/controller/TelaSecundariaController.class
+poov/controle_vacinacao/modelo/dao/VacinaDAO.class
+poov/controle_vacinacao/modelo/Vacina.class
 module-info.class
 poov/controle_vacinacao/modelo/dao/ConexaoFactory.class
 poov/controle_vacinacao/App.class
 poov/controle_vacinacao/modelo/Situacao.class
-poov/controle_vacinacao/controller/TelaSecundariaController.class
-poov/controle_vacinacao/modelo/dao/VacinaDAO.class
-poov/controle_vacinacao/modelo/Vacina.class
 poov/controle_vacinacao/controller/TelaPrincipalController.class

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.collections.ObservableList;
@@ -24,14 +25,34 @@ import javafx.stage.Stage;
 import poov.controle_vacinacao.modelo.Pessoa;
 import poov.controle_vacinacao.modelo.Vacina;
 import poov.controle_vacinacao.modelo.dao.ConexaoFactory;
+import poov.controle_vacinacao.modelo.dao.DAOFactory;
 import poov.controle_vacinacao.modelo.dao.PessoaDAO;
 import poov.controle_vacinacao.modelo.dao.VacinaDAO;
 
 public class TelaPrincipalController implements Initializable {
 
+    // Tabela pessoas
+    @FXML
+    private TableView<Pessoa> tableViewPessoa;
+
+    // Colunas da tabela pessoas
+    @FXML
+    private TableColumn<Pessoa, Long> tableColumnCodigoPessoa;
+
+    @FXML
+    private TableColumn<Pessoa, String> tableColumnNomePessoa;
+
+    @FXML
+    private TableColumn<Pessoa, String> tableColumnCPFPessoa;
+
+    @FXML
+    private TableColumn<Pessoa, LocalDate> tableColumnDataNascimentoPessoa;
+
+    // Tabela vacinas
     @FXML
     private TableView<Vacina> tableViewVacina;
 
+    // Colunas da tabela vacinas
     @FXML
     private TableColumn<Vacina, Long> tableColumnCodigoVacina;
 
@@ -81,7 +102,7 @@ public class TelaPrincipalController implements Initializable {
         try {
             System.out.println(dao.buscarComFiltro(new Pessoa("barbosa", "", null)));
         } catch (SQLException e) {
-            System.out.println(e);
+            DAOFactory.mostrarSQLException(e);
         }
     }
 
@@ -94,7 +115,7 @@ public class TelaPrincipalController implements Initializable {
         System.out.println("Remover");
     }
 
-    // Text fields/areas
+    // Text fields/areas vacina
     @FXML
     private TextArea textAreaDescricaoVacina;
 
@@ -123,7 +144,7 @@ public class TelaPrincipalController implements Initializable {
             else
                 tbList.addAll(dao.buscarComFiltro(searchVacina));
         } catch (SQLException e) {
-            System.out.println("Erro na busca de dados " + e);
+            DAOFactory.mostrarSQLException(e);
         }
     }
 

@@ -51,6 +51,7 @@ public class PessoaDAO {
         String cpf = pessoaFiltro.getCpf().trim();
         if (!cpf.isEmpty())
             sql.append(" AND cpf ILIKE ?");
+        //sql.append("AND '[2014-02-01, 2030-03-01]'::daterange @> dataNascimento");    
         sql.append(";");
 
         PreparedStatement pstmt = conexao.prepareStatement(sql.toString());

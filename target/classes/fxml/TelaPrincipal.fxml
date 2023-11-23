@@ -36,5 +36,13 @@
       <Line endX="-100.0" endY="541.0" fill="BLACK" layoutX="750.0" layoutY="62.0" startX="-100.0" startY="-35.0" strokeWidth="2.0" />
       <Button fx:id="buttonEditarVacina" layoutX="1198.0" layoutY="392.0" mnemonicParsing="false" onAction="#onEditarVacina" prefHeight="24.0" prefWidth="81.0" text="Editar" />
       <Button fx:id="buttonNovaVacina" layoutX="1198.0" layoutY="334.0" mnemonicParsing="false" onAction="#onNovaVacina" prefHeight="24.0" prefWidth="81.0" text="Nova" />
+      <TableView fx:id="tableViewPessoa" layoutX="99.0" layoutY="234.0" prefHeight="344.0" prefWidth="482.0">
+        <columns>
+          <TableColumn fx:id="tableColumnCodigoPessoa" prefWidth="75.0" text="Código" />
+          <TableColumn fx:id="tableColumnNomePessoa" prefWidth="118.0" text="Nome" />
+            <TableColumn fx:id="tableColumnCPFPessoa" prefWidth="134.0" text="CPF" />
+            <TableColumn fx:id="tableColumnDataNascimentoPessoa" prefWidth="154.0" text="Data de nascimento" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
