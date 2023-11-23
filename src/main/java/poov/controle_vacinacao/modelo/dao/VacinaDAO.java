@@ -44,13 +44,14 @@ public class VacinaDAO {
     public List<Vacina> buscarComFiltro(Vacina vacinaFiltro) throws SQLException {
         Vacina v;
         List<Vacina> vacinas = new ArrayList<>();
+        // Construindo a string do sql "dinamicamente"
         StringBuilder sql = new StringBuilder("SELECT * FROM vacina WHERE situacao = 'ATIVO'");
         if (vacinaFiltro.getCodigo() != null)
             sql.append(" AND codigo = " + vacinaFiltro.getCodigo());
         if (!vacinaFiltro.getNome().isEmpty())
-            sql.append(" AND nome LIKE '" + vacinaFiltro.getNome() + "'");
+            sql.append(" AND nome ILIKE '%" + vacinaFiltro.getNome() + "%'");
         if (!vacinaFiltro.getDescricao().isEmpty())
-            sql.append(" AND descricao LIKE '" + vacinaFiltro.getDescricao() + "'");
+            sql.append(" AND descricao ILIKE '%" + vacinaFiltro.getDescricao() + "%'");
         sql.append(";");
 
         Statement stmt = conexao.createStatement();

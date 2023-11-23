@@ -48,8 +48,11 @@ public class TelaPrincipalController implements Initializable {
         try {
             Long codigo = Long.parseLong(textFieldCodigo.getText());
             filterVacina.setCodigo(codigo);
+        
         } catch (NumberFormatException e) {
         } finally {
+            filterVacina.setNome(textFieldNome.getText());
+            filterVacina.setDescricao(textAreaDescricao.getText());
             System.out.println("Vacina de filtro: " + filterVacina);
             buildTable(filterVacina);
         }
