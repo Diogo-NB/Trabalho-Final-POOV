@@ -31,50 +31,44 @@ public class TelaPrincipalController implements Initializable {
     private TableView<Vacina> tableViewVacina;
 
     @FXML
-    private TableColumn<Vacina, Long> tableColumnCodigo;
+    private TableColumn<Vacina, Long> tableColumnCodigoVacina;
 
     @FXML
-    private TableColumn<Vacina, String> tableColumnNome;
+    private TableColumn<Vacina, String> tableColumnNomeVacina;
 
     @FXML
-    private TableColumn<Vacina, String> tableColumnDescricao;
+    private TableColumn<Vacina, String> tableColumnDescricaoVacina;
+
+    // Pesquisar vacina
+    @FXML
+    private Button buttonPesquisarVacina;
 
     @FXML
-    private Button buttonPesquisar;
-
-    @FXML
-    void onPesquisar(ActionEvent event) {
+    void onPesquisarVacina(ActionEvent event) {
         Vacina filterVacina = new Vacina();
         try {
-            Long codigo = Long.parseLong(textFieldCodigo.getText());
+            Long codigo = Long.parseLong(textFieldCodigoVacina.getText());
             filterVacina.setCodigo(codigo);
 
         } catch (NumberFormatException e) {
         } finally {
-            filterVacina.setNome(textFieldNome.getText());
-            filterVacina.setDescricao(textAreaDescricao.getText());
+            filterVacina.setNome(textFieldNomeVacina.getText());
+            filterVacina.setDescricao(textAreaDescricaoVacina.getText());
             System.out.println("Vacina de filtro: " + filterVacina);
             buildTable(filterVacina);
         }
     }
 
+    // Nova vacina
     @FXML
-    private Button buttonNova;
+    private Button buttonNovaVacina;
 
     @FXML
-    void onNova(ActionEvent event) {
+    void onNovaVacina(ActionEvent event) {
         System.out.println("Nova");
     }
 
-    @FXML
-    private Button buttonEditar;
-
-    @FXML
-    void onEditar(ActionEvent event) {
-        System.out.println("Editar");
-        System.out.println(tableViewVacina.getSelectionModel().getSelectedItems());
-    }
-
+    // Editar vacina
     @FXML
     private Button buttonEditarVacina;
 
@@ -84,6 +78,7 @@ public class TelaPrincipalController implements Initializable {
         System.out.println(tableViewVacina.getSelectionModel().getSelectedItems());
     }
 
+    // Remover vacina
     @FXML
     private Button buttonRemoverVacina;
 
@@ -92,14 +87,15 @@ public class TelaPrincipalController implements Initializable {
         System.out.println("Remover");
     }
 
+    // Text fields/areas
     @FXML
-    private TextArea textAreaDescricao;
+    private TextArea textAreaDescricaoVacina;
 
     @FXML
-    private TextField textFieldCodigo;
+    private TextField textFieldCodigoVacina;
 
     @FXML
-    private TextField textFieldNome;
+    private TextField textFieldNomeVacina;
 
     private Stage stageTelaSecundaria;
 
@@ -127,9 +123,9 @@ public class TelaPrincipalController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         dao = new VacinaDAO(conexao);
-        tableColumnCodigo.setCellValueFactory(new PropertyValueFactory<Vacina, Long>("codigo"));
-        tableColumnNome.setCellValueFactory(new PropertyValueFactory<Vacina, String>("nome"));
-        tableColumnDescricao.setCellValueFactory(new PropertyValueFactory<Vacina, String>("descricao"));
+        tableColumnCodigoVacina.setCellValueFactory(new PropertyValueFactory<Vacina, Long>("codigo"));
+        tableColumnNomeVacina.setCellValueFactory(new PropertyValueFactory<Vacina, String>("nome"));
+        tableColumnDescricaoVacina.setCellValueFactory(new PropertyValueFactory<Vacina, String>("descricao"));
         buildTable(null);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaSecundaria.fxml"));

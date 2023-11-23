@@ -14,27 +14,27 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poov.controle_vacinacao.controller.TelaPrincipalController">
    <children>
       <Label layoutX="752.0" layoutY="68.0" text="Código:" />
-      <TextField id="textFieldCodigo" fx:id="textFieldCodigo" layoutX="803.0" layoutY="64.0" prefHeight="24.0" prefWidth="137.0" />
+      <TextField fx:id="textFieldCodigoVacina" layoutX="803.0" layoutY="64.0" prefHeight="24.0" prefWidth="137.0" />
       <Label layoutX="759.0" layoutY="100.0" text="Nome:" />
-      <TextField id="textFieldNome" fx:id="textFieldNome" layoutX="803.0" layoutY="96.0" prefHeight="24.0" prefWidth="290.0" />
+      <TextField fx:id="textFieldNomeVacina" layoutX="803.0" layoutY="96.0" prefHeight="24.0" prefWidth="290.0" />
       <Label layoutX="733.0" layoutY="132.0" text="Descrição:" />
-      <TextArea id="textAreaDescricao" fx:id="textAreaDescricao" layoutX="803.0" layoutY="126.0" prefHeight="84.0" prefWidth="290.0" />
-      <Button id="buttonPesquisar" fx:id="buttonPesquisar" layoutX="1198.0" layoutY="137.0" mnemonicParsing="false" onAction="#onPesquisar" text="Pesquisar" />
+      <TextArea fx:id="textAreaDescricaoVacina" layoutX="803.0" layoutY="126.0" prefHeight="84.0" prefWidth="290.0" />
+      <Button fx:id="buttonPesquisarVacina" layoutX="1142.0" layoutY="136.0" mnemonicParsing="false" onAction="#onPesquisarVacina" text="Pesquisar" />
       <TableView fx:id="tableViewVacina" layoutX="733.0" layoutY="232.0" prefHeight="344.0" prefWidth="449.0">
         <columns>
-          <TableColumn fx:id="tableColumnCodigo" prefWidth="62.0" text="Código" />
-          <TableColumn fx:id="tableColumnNome" prefWidth="88.0" text="Nome" />
-            <TableColumn fx:id="tableColumnDescricao" prefWidth="298.0" text="Descrição" />
+          <TableColumn fx:id="tableColumnCodigoVacina" prefWidth="62.0" text="Código" />
+          <TableColumn fx:id="tableColumnNomeVacina" prefWidth="88.0" text="Nome" />
+            <TableColumn fx:id="tableColumnDescricaoVacina" prefWidth="298.0" text="Descrição" />
         </columns>
       </TableView>
-      <Button id="buttonNova" fx:id="buttonNova" layoutX="1200.0" layoutY="349.0" mnemonicParsing="false" onAction="#onNova" prefHeight="24.0" prefWidth="77.0" text="Nova" />
-      <Button id="buttonRemover" fx:id="buttonRemoverVacina" layoutX="1200.0" layoutY="417.0" mnemonicParsing="false" onAction="#onRemoverVacina" text="Remover" />
+      <Button fx:id="buttonRemoverVacina" layoutX="1198.0" layoutY="448.0" mnemonicParsing="false" onAction="#onRemoverVacina" prefHeight="24.0" prefWidth="81.0" text="Remover" />
       <Text layoutX="924.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vacina" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
       <Line endX="-100.0" endY="541.0" fill="BLACK" layoutX="750.0" layoutY="62.0" startX="-100.0" startY="-35.0" strokeWidth="2.0" />
-      <Button id="buttonRemover" fx:id="buttonEditarVacina" layoutX="1200.0" layoutY="459.0" mnemonicParsing="false" onAction="#onEditarVacina" prefHeight="24.0" prefWidth="77.0" text="Editar" />
+      <Button fx:id="buttonEditarVacina" layoutX="1198.0" layoutY="392.0" mnemonicParsing="false" onAction="#onEditarVacina" prefHeight="24.0" prefWidth="81.0" text="Editar" />
+      <Button fx:id="buttonNovaVacina" layoutX="1198.0" layoutY="334.0" mnemonicParsing="false" onAction="#onNovaVacina" prefHeight="24.0" prefWidth="81.0" text="Nova" />
    </children>
 </AnchorPane>
