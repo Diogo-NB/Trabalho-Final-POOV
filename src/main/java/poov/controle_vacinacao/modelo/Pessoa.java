@@ -16,6 +16,10 @@ public class Pessoa {
                 + dataNascimento + ",\nsituacao: " + situacao + "\n}\n";
     }
 
+    public Pessoa(){
+        this("", "", null);
+    }
+
     public Pessoa(String nome, String cpf, LocalDate dataNascimento) {
         this.nome = nome;
         this.cpf = cpf;

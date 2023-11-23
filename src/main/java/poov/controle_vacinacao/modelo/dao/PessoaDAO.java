@@ -1,6 +1,7 @@
 package poov.controle_vacinacao.modelo.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -30,6 +31,53 @@ public class PessoaDAO {
         }
         rs.close();
         stmt.close();
+        return pessoas;
+    }
+
+    public List<Pessoa> buscarComFiltro(Pessoa pessoaFiltro) throws SQLException {
+        Pessoa p;
+        List<Pessoa> pessoas = new ArrayList<>();
+        // Construindo a string do sql "dinamicamente"
+        StringBuilder sql = new StringBuilder("SELECT * FROM pessoa WHERE situacao = 'ATIVO'");
+
+        Long codigo = pessoaFiltro.getCodigo();
+        if (codigo != null)
+            sql.append(" AND codigo = ?");
+
+        String nome = pessoaFiltro.getNome().trim();
+        if (!nome.isEmpty())
+            sql.append(" AND nome ILIKE ?");
+
+        String cpf = pessoaFiltro.getCpf().trim();
+        if (!cpf.isEmpty())
+            sql.append(" AND cpf ILIKE ?");
+        sql.append(";");
+
+        PreparedStatement pstmt = conexao.prepareStatement(sql.toString());
+        int i = 1;
+
+        if (codigo != null) {
+            pstmt.setLong(i, codigo);
+            i++;
+        }
+
+        if (!nome.isEmpty()) {
+            pstmt.setString(i, '%' + nome + '%');
+            i++;
+        }
+
+        if (!cpf.isEmpty()) {
+            pstmt.setString(i, '%' + cpf + '%');
+            i++;
+        }
+
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            p = new Pessoa(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getDate(4).toLocalDate());
+            pessoas.add(p);
+        }
+        rs.close();
+        pstmt.close();
         return pessoas;
     }
 
