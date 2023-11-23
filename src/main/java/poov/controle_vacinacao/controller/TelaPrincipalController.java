@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -93,9 +94,6 @@ public class TelaPrincipalController implements Initializable {
         } catch (NumberFormatException e) {
         } finally {
             Pessoa searchPessoa = new Pessoa(codigo, textFieldNomePessoa.getText(), textFieldCPFPessoa.getText(), null);
-            // searchVacina.setNome(textFieldNomeVacina.getText());
-            // searchVacina.setDescricao(textAreaDescricaoVacina.getText());
-            // System.out.println("Vacina de filtro: " + searchVacina);
             buildPessoaTable(searchPessoa);
         }
     }
@@ -115,14 +113,8 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     void onEditarVacina(ActionEvent event) {
-        // System.out.println("Editar");
-        // System.out.println(tableViewVacina.getSelectionModel().getSelectedItems());
-        PessoaDAO dao = new PessoaDAO(conexao);
-        try {
-            System.out.println(dao.buscarComFiltro(new Pessoa("barbosa", "", null)));
-        } catch (SQLException e) {
-            DAOFactory.mostrarSQLException(e);
-        }
+        System.out.println(datePickerDataNascimentoRange0Pessoa.getValue() + "Até: "
+                + datePickerDataNascimentoRange1Pessoa.getValue());
     }
 
     // Remover vacina
@@ -153,6 +145,12 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private TextField textFieldCPFPessoa;
+
+    @FXML
+    private DatePicker datePickerDataNascimentoRange0Pessoa;
+
+    @FXML
+    private DatePicker datePickerDataNascimentoRange1Pessoa;
 
     private Stage stageTelaSecundaria;
 
