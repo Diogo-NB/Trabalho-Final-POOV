@@ -46,27 +46,45 @@ public class VacinaDAO {
         List<Vacina> vacinas = new ArrayList<>();
         // Construindo a string do sql "dinamicamente"
         StringBuilder sql = new StringBuilder("SELECT * FROM vacina WHERE situacao = 'ATIVO'");
-        if (vacinaFiltro.getCodigo() != null)
-            sql.append(" AND codigo = " + vacinaFiltro.getCodigo());
 
-        String field = vacinaFiltro.getNome().trim();    
-        if (!field.isEmpty())
-            sql.append(" AND nome ILIKE '%" + field + "%'");
+        Long codigo = vacinaFiltro.getCodigo();
+        if (codigo != null)
+            sql.append(" AND codigo = ?");
 
-        field = vacinaFiltro.getDescricao().trim();    
-        if (!field.isEmpty())
-            sql.append(" AND descricao ILIKE '%" + field + "%'");
+        String nome = vacinaFiltro.getNome().trim();
+        if (!nome.isEmpty())
+            sql.append(" AND nome ILIKE ?");
+
+        String descricao = vacinaFiltro.getDescricao().trim();
+        if (!descricao.isEmpty())
+            sql.append(" AND descricao ILIKE ?");
         sql.append(";");
 
-        Statement stmt = conexao.createStatement();
+        PreparedStatement pstmt = conexao.prepareStatement(sql.toString());
+        int i = 1;
 
-        ResultSet rs = stmt.executeQuery(sql.toString());
+        if (codigo != null) {
+            pstmt.setLong(i, codigo);
+            i++;
+        }
+
+        if (!nome.isEmpty()) {
+            pstmt.setString(i, '%' + nome + '%');
+            i++;
+        }
+
+        if (!descricao.isEmpty()) {
+            pstmt.setString(i, '%' + descricao + '%');
+            i++;
+        }
+
+        ResultSet rs = pstmt.executeQuery();
         while (rs.next()) {
             v = new Vacina(rs.getLong(1), rs.getString(2), rs.getString(3));
             vacinas.add(v);
         }
         rs.close();
-        stmt.close();
+        pstmt.close();
         return vacinas;
     }
 

@@ -45,17 +45,16 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     void onPesquisarVacina(ActionEvent event) {
-        Vacina filterVacina = new Vacina();
+        Long codigo = null;
         try {
-            Long codigo = Long.parseLong(textFieldCodigoVacina.getText());
-            filterVacina.setCodigo(codigo);
-
+            codigo = Long.parseLong(textFieldCodigoVacina.getText());
         } catch (NumberFormatException e) {
         } finally {
-            filterVacina.setNome(textFieldNomeVacina.getText());
-            filterVacina.setDescricao(textAreaDescricaoVacina.getText());
-            System.out.println("Vacina de filtro: " + filterVacina);
-            buildTable(filterVacina);
+            Vacina searchVacina = new Vacina(codigo, textFieldNomeVacina.getText(), textAreaDescricaoVacina.getText());
+            // searchVacina.setNome(textFieldNomeVacina.getText());
+            // searchVacina.setDescricao(textAreaDescricaoVacina.getText());
+            // System.out.println("Vacina de filtro: " + searchVacina);
+            buildTable(searchVacina);
         }
     }
 
@@ -140,7 +139,6 @@ public class TelaPrincipalController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }
