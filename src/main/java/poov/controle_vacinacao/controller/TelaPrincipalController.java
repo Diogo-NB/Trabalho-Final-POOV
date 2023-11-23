@@ -81,6 +81,15 @@ public class TelaPrincipalController implements Initializable {
         }
     }
 
+    // Pesquisar pessoa
+    @FXML
+    private Button buttonPesquisarPessoa;
+
+    @FXML
+    void onPesquisarPessoa(ActionEvent event) {
+        buildPessoaTable(null);
+    }
+
     // Nova vacina
     @FXML
     private Button buttonNovaVacina;
@@ -169,17 +178,18 @@ public class TelaPrincipalController implements Initializable {
         vacinaDAO = new VacinaDAO(conexao);
         pessoaDAO = new PessoaDAO(conexao);
 
-        // Inicialização da tabela vacinas  
+        // Inicialização da tabela vacinas
         tableColumnCodigoVacina.setCellValueFactory(new PropertyValueFactory<Vacina, Long>("codigo"));
         tableColumnNomeVacina.setCellValueFactory(new PropertyValueFactory<Vacina, String>("nome"));
         tableColumnDescricaoVacina.setCellValueFactory(new PropertyValueFactory<Vacina, String>("descricao"));
         buildVacinaTable(null);
 
-        // Inicialização da tabela vacinas  
+        // Inicialização da tabela vacinas
         tableColumnCodigoPessoa.setCellValueFactory(new PropertyValueFactory<Pessoa, Long>("codigo"));
         tableColumnNomePessoa.setCellValueFactory(new PropertyValueFactory<Pessoa, String>("nome"));
         tableColumnCPFPessoa.setCellValueFactory(new PropertyValueFactory<Pessoa, String>("cpf"));
-        tableColumnDataNascimentoPessoa.setCellValueFactory(new PropertyValueFactory<Pessoa, LocalDate>("dataNascimento"));
+        tableColumnDataNascimentoPessoa
+                .setCellValueFactory(new PropertyValueFactory<Pessoa, LocalDate>("dataNascimento"));
         buildPessoaTable(null);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaSecundaria.fxml"));
