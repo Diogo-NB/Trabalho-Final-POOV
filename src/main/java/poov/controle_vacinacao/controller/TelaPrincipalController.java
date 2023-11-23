@@ -129,7 +129,9 @@ public class TelaPrincipalController implements Initializable {
 
     private final Connection conexao = ConexaoFactory.getConexao();
 
-    private VacinaDAO dao;
+    private VacinaDAO vacinaDAO;
+
+    private PessoaDAO pessoaDAO;
 
     public TelaPrincipalController() {
         System.out.println("TelaPrincipalController criado");
@@ -140,9 +142,22 @@ public class TelaPrincipalController implements Initializable {
             ObservableList<Vacina> tbList = tableViewVacina.getItems();
             tbList.clear();
             if (searchVacina == null)
-                tbList.addAll(dao.buscarTodas());
+                tbList.addAll(vacinaDAO.buscarTodas());
             else
-                tbList.addAll(dao.buscarComFiltro(searchVacina));
+                tbList.addAll(vacinaDAO.buscarComFiltro(searchVacina));
+        } catch (SQLException e) {
+            DAOFactory.mostrarSQLException(e);
+        }
+    }
+
+    void buildPessoaTable(Pessoa searchPessoa) {
+        try {
+            ObservableList<Pessoa> tbList = tableViewPessoa.getItems();
+            tbList.clear();
+            if (searchPessoa == null)
+                tbList.addAll(pessoaDAO.buscarTodas());
+            else
+                tbList.addAll(pessoaDAO.buscarComFiltro(searchPessoa));
         } catch (SQLException e) {
             DAOFactory.mostrarSQLException(e);
         }
@@ -150,11 +165,22 @@ public class TelaPrincipalController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        dao = new VacinaDAO(conexao);
+        // Inicialização dos DAOs
+        vacinaDAO = new VacinaDAO(conexao);
+        pessoaDAO = new PessoaDAO(conexao);
+
+        // Inicialização da tabela vacinas  
         tableColumnCodigoVacina.setCellValueFactory(new PropertyValueFactory<Vacina, Long>("codigo"));
         tableColumnNomeVacina.setCellValueFactory(new PropertyValueFactory<Vacina, String>("nome"));
         tableColumnDescricaoVacina.setCellValueFactory(new PropertyValueFactory<Vacina, String>("descricao"));
         buildVacinaTable(null);
+
+        // Inicialização da tabela vacinas  
+        tableColumnCodigoPessoa.setCellValueFactory(new PropertyValueFactory<Pessoa, Long>("codigo"));
+        tableColumnNomePessoa.setCellValueFactory(new PropertyValueFactory<Pessoa, String>("nome"));
+        tableColumnCPFPessoa.setCellValueFactory(new PropertyValueFactory<Pessoa, String>("cpf"));
+        tableColumnDataNascimentoPessoa.setCellValueFactory(new PropertyValueFactory<Pessoa, LocalDate>("dataNascimento"));
+        buildPessoaTable(null);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaSecundaria.fxml"));
         Parent root;
