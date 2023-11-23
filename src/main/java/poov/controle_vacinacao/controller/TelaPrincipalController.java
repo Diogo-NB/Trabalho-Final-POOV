@@ -87,8 +87,17 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     void onPesquisarPessoa(ActionEvent event) {
-        System.out.println("TESTE: " + textFieldCPFPessoa.getText());
-        buildPessoaTable(null);
+        Long codigo = null;
+        try {
+            codigo = Long.parseLong(textFieldCodigoPessoa.getText());
+        } catch (NumberFormatException e) {
+        } finally {
+            Pessoa searchPessoa = new Pessoa(codigo, textFieldNomePessoa.getText(), textFieldCPFPessoa.getText(), null);
+            // searchVacina.setNome(textFieldNomeVacina.getText());
+            // searchVacina.setDescricao(textAreaDescricaoVacina.getText());
+            // System.out.println("Vacina de filtro: " + searchVacina);
+            buildPessoaTable(searchPessoa);
+        }
     }
 
     // Nova vacina
