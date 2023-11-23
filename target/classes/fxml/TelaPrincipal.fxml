@@ -28,13 +28,13 @@
         </columns>
       </TableView>
       <Button id="buttonNova" fx:id="buttonNova" layoutX="1200.0" layoutY="349.0" mnemonicParsing="false" onAction="#onNova" prefHeight="24.0" prefWidth="77.0" text="Nova" />
-      <Button id="buttonEditar" fx:id="buttonEditar" layoutX="1200.0" layoutY="382.0" mnemonicParsing="false" onAction="#onEditar" prefHeight="24.0" prefWidth="77.0" text="Editar" />
-      <Button id="buttonRemover" layoutX="1200.0" layoutY="417.0" mnemonicParsing="false" onAction="#onRemover" text="Remover" />
+      <Button id="buttonRemover" fx:id="buttonRemoverVacina" layoutX="1200.0" layoutY="417.0" mnemonicParsing="false" onAction="#onRemoverVacina" text="Remover" />
       <Text layoutX="924.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vacina" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
       <Line endX="-100.0" endY="541.0" fill="BLACK" layoutX="750.0" layoutY="62.0" startX="-100.0" startY="-35.0" strokeWidth="2.0" />
+      <Button id="buttonRemover" fx:id="buttonEditarVacina" layoutX="1200.0" layoutY="459.0" mnemonicParsing="false" onAction="#onEditarVacina" prefHeight="24.0" prefWidth="77.0" text="Editar" />
    </children>
 </AnchorPane>

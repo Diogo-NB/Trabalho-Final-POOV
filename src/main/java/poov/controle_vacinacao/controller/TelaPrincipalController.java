@@ -48,7 +48,7 @@ public class TelaPrincipalController implements Initializable {
         try {
             Long codigo = Long.parseLong(textFieldCodigo.getText());
             filterVacina.setCodigo(codigo);
-        
+
         } catch (NumberFormatException e) {
         } finally {
             filterVacina.setNome(textFieldNome.getText());
@@ -76,10 +76,19 @@ public class TelaPrincipalController implements Initializable {
     }
 
     @FXML
-    private Button buttonRemover;
+    private Button buttonEditarVacina;
 
     @FXML
-    void onRemover(ActionEvent event) {
+    void onEditarVacina(ActionEvent event) {
+        System.out.println("Editar");
+        System.out.println(tableViewVacina.getSelectionModel().getSelectedItems());
+    }
+
+    @FXML
+    private Button buttonRemoverVacina;
+
+    @FXML
+    void onRemoverVacina(ActionEvent event) {
         System.out.println("Remover");
     }
 
