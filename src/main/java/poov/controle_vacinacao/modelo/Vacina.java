@@ -6,7 +6,7 @@ public class Vacina {
     private String nome;
     private String descricao;
     private Situacao situacao = Situacao.ATIVO;
-    
+
     public Vacina() {
         nome = "";
         descricao = "";
@@ -84,7 +84,5 @@ public class Vacina {
             return false;
         return true;
     }
-
-
 
 }

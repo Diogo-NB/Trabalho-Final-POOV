@@ -48,10 +48,14 @@ public class VacinaDAO {
         StringBuilder sql = new StringBuilder("SELECT * FROM vacina WHERE situacao = 'ATIVO'");
         if (vacinaFiltro.getCodigo() != null)
             sql.append(" AND codigo = " + vacinaFiltro.getCodigo());
-        if (!vacinaFiltro.getNome().isEmpty())
-            sql.append(" AND nome ILIKE '%" + vacinaFiltro.getNome() + "%'");
-        if (!vacinaFiltro.getDescricao().isEmpty())
-            sql.append(" AND descricao ILIKE '%" + vacinaFiltro.getDescricao() + "%'");
+
+        String field = vacinaFiltro.getNome().trim();    
+        if (!field.isEmpty())
+            sql.append(" AND nome ILIKE '%" + field + "%'");
+
+        field = vacinaFiltro.getDescricao().trim();    
+        if (!field.isEmpty())
+            sql.append(" AND descricao ILIKE '%" + field + "%'");
         sql.append(";");
 
         Statement stmt = conexao.createStatement();
@@ -76,8 +80,6 @@ public class VacinaDAO {
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
             v = new Vacina(rs.getLong(1), rs.getString(2), rs.getString(3));
-        } else {
-            System.out.println("Nao foi encontrada uma vacina a partir dos parâmetros: ");
         }
         rs.close();
         pstmt.close();
@@ -109,11 +111,13 @@ public class VacinaDAO {
         int resultado = pstmtUpd.executeUpdate();
 
         if (resultado == 1) {
-            System.out.println("Remocao da vacina executada com sucesso");
+            // System.out.println("Remocao da vacina executada com sucesso");
             retorno = true;
-        } else {
-            System.out.println("Erro removendo a vacina com codigo: " + vacina.getCodigo());
         }
+        // else {
+        // System.out.println("Erro removendo a vacina com codigo: " +
+        // vacina.getCodigo());
+        // }
 
         pstmtUpd.close();
 
