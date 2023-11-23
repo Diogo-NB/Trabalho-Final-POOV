@@ -23,6 +23,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import poov.controle_vacinacao.modelo.Vacina;
 import poov.controle_vacinacao.modelo.dao.ConexaoFactory;
+import poov.controle_vacinacao.modelo.dao.PessoaDAO;
 import poov.controle_vacinacao.modelo.dao.VacinaDAO;
 
 public class TelaPrincipalController implements Initializable {
@@ -73,8 +74,15 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     void onEditarVacina(ActionEvent event) {
-        System.out.println("Editar");
-        System.out.println(tableViewVacina.getSelectionModel().getSelectedItems());
+        //System.out.println("Editar");
+        //System.out.println(tableViewVacina.getSelectionModel().getSelectedItems());
+        PessoaDAO dao = new PessoaDAO(conexao);
+        try{
+            System.out.println(dao.buscarTodas());    
+        }
+        catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     // Remover vacina

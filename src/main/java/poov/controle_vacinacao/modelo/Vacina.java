@@ -57,7 +57,7 @@ public class Vacina {
 
     @Override
     public String toString() {
-        return "codigo: " + codigo + "\nnome: " + nome + "\ndescricao: " + descricao + "\nsituacao: " + situacao;
+        return nome + " {\ncodigo: " + codigo + ",\ndescricao: " + descricao + ",\nsituacao: " + situacao + "\n}\n";
     }
 
     @Override

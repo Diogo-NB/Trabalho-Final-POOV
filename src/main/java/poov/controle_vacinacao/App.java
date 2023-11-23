@@ -1,7 +1,6 @@
 package poov.controle_vacinacao;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Locale;
 
 import javafx.application.Application;
@@ -10,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import poov.controle_vacinacao.modelo.Pessoa;
 
 public class App extends Application {
 
@@ -25,8 +23,6 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        Pessoa pessoa = new Pessoa(10l, "STYLESHEET_MODENA", "STYLESHEET_CASPIAN", LocalDate.now());
-        System.out.println(pessoa);
         Locale.setDefault(Locale.of("pt", "BR"));
         launch();
     }

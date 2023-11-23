@@ -12,8 +12,8 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento
-                + ", situacao=" + situacao + "]";
+        return nome + " {\ncodigo: " + codigo + ",\ncpf: " + cpf + ",\ndataNascimento: "
+                + dataNascimento + ",\nsituacao: " + situacao + "\n}\n";
     }
 
     public Pessoa(String nome, String cpf, LocalDate dataNascimento) {
