@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poov.controle_vacinacao.controller.TelaSecundariaController">
+   <children>
+      <Button fx:id="buttonOk" layoutX="214.0" layoutY="185.0" mnemonicParsing="false" onAction="#buttonOkClicado" prefHeight="24.0" prefWidth="78.0" text="OK" />
+      <Button fx:id="buttonCancelar" layoutX="302.0" layoutY="185.0" mnemonicParsing="false" onAction="#buttonCancelarClicado" prefHeight="24.0" prefWidth="78.0" text="Cancelar" />
+      <Label layoutX="33.0" layoutY="26.0" text="Código:" />
+      <TextField fx:id="textFieldCodigo" layoutX="84.0" layoutY="22.0" prefHeight="24.0" prefWidth="137.0" />
+      <Label layoutX="40.0" layoutY="58.0" text="Nome:" />
+      <TextField fx:id="textFieldNome" layoutX="84.0" layoutY="54.0" prefHeight="24.0" prefWidth="290.0" />
+      <Label layoutX="14.0" layoutY="90.0" text="Descrição:" />
+      <TextArea fx:id="textAreaDescricao" layoutX="84.0" layoutY="84.0" prefHeight="84.0" prefWidth="290.0" />
+   </children>
+</AnchorPane>

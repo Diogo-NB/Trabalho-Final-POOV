@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="426.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poov.controle_vacinacao.controller.TelaPrincipalController">
+   <children>
+      <Label layoutX="34.0" layoutY="14.0" text="Código:" />
+      <TextField id="textFieldCodigo" fx:id="textFieldCodigo" layoutX="85.0" layoutY="10.0" prefHeight="24.0" prefWidth="137.0" />
+      <Label layoutX="41.0" layoutY="46.0" text="Nome:" />
+      <TextField id="textFieldNome" fx:id="textFieldNome" layoutX="85.0" layoutY="42.0" prefHeight="24.0" prefWidth="290.0" />
+      <Label layoutX="15.0" layoutY="78.0" text="Descrição:" />
+      <TextArea id="textAreaDescricao" fx:id="textAreaDescricao" layoutX="85.0" layoutY="72.0" prefHeight="84.0" prefWidth="290.0" />
+      <Button id="buttonPesquisar" fx:id="buttonPesquisar" layoutX="401.0" layoutY="82.0" mnemonicParsing="false" onAction="#onPesquisar" text="Pesquisar" />
+      <TableView fx:id="tableViewVacina" layoutX="85.0" layoutY="173.0" prefHeight="224.0" prefWidth="290.0">
+        <columns>
+          <TableColumn fx:id="tableColumnCodigo" prefWidth="75.0" text="Codigo" />
+          <TableColumn fx:id="tableColumnNome" prefWidth="75.0" text="Nome" />
+            <TableColumn fx:id="tableColumnDescricao" prefWidth="139.0" text="Descrição" />
+        </columns>
+      </TableView>
+      <Button id="buttonNova" fx:id="buttonNova" layoutX="395.0" layoutY="228.0" mnemonicParsing="false" onAction="#onNova" text="Nova" />
+      <Button id="buttonEditar" fx:id="buttonEditar" layoutX="395.0" layoutY="261.0" mnemonicParsing="false" onAction="#onEditar" text="Editar" />
+      <Button id="buttonRemover" layoutX="395.0" layoutY="296.0" mnemonicParsing="false" onAction="#onRemover" text="Remover" />
+   </children>
+</AnchorPane>
