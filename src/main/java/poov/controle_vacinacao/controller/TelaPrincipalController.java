@@ -87,6 +87,7 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     void onPesquisarPessoa(ActionEvent event) {
+        System.out.println("TESTE: " + textFieldCPFPessoa.getText());
         buildPessoaTable(null);
     }
 
@@ -133,6 +134,16 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private TextField textFieldNomeVacina;
+
+    // Text fields/areas pessoa
+    @FXML
+    private TextField textFieldCodigoPessoa;
+
+    @FXML
+    private TextField textFieldNomePessoa;
+
+    @FXML
+    private TextField textFieldCPFPessoa;
 
     private Stage stageTelaSecundaria;
 
