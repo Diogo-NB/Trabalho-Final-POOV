@@ -1,0 +1,119 @@
+CREATE TABLE IF NOT EXISTS public.vacina
+(
+ codigo bigserial NOT NULL,
+ nome text,
+ descricao text,
+ PRIMARY KEY (codigo)
+);
+
+CREATE TABLE IF NOT EXISTS public.pessoa
+(
+ codigo bigserial NOT NULL,
+ nome text,
+ cpf text,
+ dataNascimento date,
+ situacao text DEFAULT 'ATIVO',	
+ PRIMARY KEY (codigo)
+);
+
+CREATE TABLE IF NOT EXISTS public.aplicacao
+(
+ codigo bigserial NOT NULL,
+ data date,
+ codigoPessoa bigint NOT NULL,
+ codigoVacina bigint NOT NULL,
+ situacao text DEFAULT 'ATIVO',	
+ PRIMARY KEY (codigo),
+ CONSTRAINT fk_pessoa FOREIGN KEY(codigoPessoa) REFERENCES pessoa(codigo), 
+ CONSTRAINT fk_vacina FOREIGN KEY(codigoVacina) REFERENCES vacina(codigo)
+);
+
+select * from vacina;
+select * from pessoa;
+select * from aplicacao;
+
+-- Remove all previous data
+DELETE FROM public.vacina;
+DELETE FROM public.pessoa;
+DELETE FROM public.aplicacao;
+
+-- Reset sequences for codigo in each table
+SELECT setval('public.vacina_codigo_seq', COALESCE((SELECT MAX(codigo) FROM public.vacina), 1), false);
+SELECT setval('public.aplicacao_codigo_seq', COALESCE((SELECT MAX(codigo) FROM public.aplicacao), 1), false);
+SELECT setval('public.pessoa_codigo_seq', COALESCE((SELECT MAX(codigo) FROM public.pessoa), 1), false);
+
+-- Populate Vacina table
+INSERT INTO public.vacina (nome, descricao) 
+VALUES 
+    ('Pfizer-BioNTech', 'Vacina contra a COVID-19 desenvolvida pela Pfizer e BioNTech'),
+    ('Moderna', 'Vacina contra a COVID-19 desenvolvida pela Moderna'),
+    ('AstraZeneca', 'Vacina contra a COVID-19 desenvolvida pela AstraZeneca'),
+    ('Johnson & Johnson', 'Vacina contra a COVID-19 desenvolvida pela Johnson & Johnson'),
+    ('Sinovac', 'Vacina contra a COVID-19 desenvolvida pela Sinovac'),
+    ('Sputnik V', 'Vacina contra a COVID-19 desenvolvida pela Gamaleya Research Institute'),
+    ('Covaxin', 'Vacina contra a COVID-19 desenvolvida pela Bharat Biotech'),
+    ('Novavax', 'Vacina contra a COVID-19 desenvolvida pela Novavax'),
+    ('CureVac', 'Vacina contra a COVID-19 desenvolvida pela CureVac'),
+    ('Sinopharm', 'Vacina contra a COVID-19 desenvolvida pela China National Pharmaceutical Group'),
+    ('Oxford-AstraZeneca', 'Vacina contra a COVID-19 desenvolvida pela Universidade de Oxford e AstraZeneca'),
+    ('SinoVac', 'Vacina contra a COVID-19 desenvolvida pela Sinovac'),
+    ('CanSino', 'Vacina contra a COVID-19 desenvolvida pela CanSino Biologics'),
+    ('Bharat Biotech', 'Vacina contra a COVID-19 desenvolvida pela Bharat Biotech'),
+    ('Polio Vaccine', 'Vacina contra a Poliomielite'),
+    ('MMR Vaccine', 'Vacina contra Sarampo, Caxumba e Rubéola'),
+    ('Hepatitis B Vaccine', 'Vacina contra Hepatite B'),
+    ('Yellow Fever Vaccine', 'Vacina contra Febre Amarela'),
+    ('Flu Vaccine', 'Vacina contra a Gripe'),
+    ('Tetanus Vaccine', 'Vacina contra o Tétano'),
+    ('Pneumococcal Vaccine', 'Vacina contra Pneumococos'),
+    ('HPV Vaccine', 'Vacina contra o Papilomavírus Humano'),
+    ('Cholera Vaccine', 'Vacina contra a Cólera'),
+    ('DTP Vaccine', 'Vacina contra Difteria, Tétano e Coqueluche');
+
+-- Populate Pessoa table
+INSERT INTO public.pessoa (nome, cpf, dataNascimento) 
+VALUES 
+    ('João Silva', 'CPF111111', '1980-05-15'),
+    ('Maria Oliveira', 'CPF222222', '1992-10-20'),
+    ('Pedro Santos', 'CPF333333', '1985-02-28'),
+    ('Ana Costa', 'CPF444444', '1978-07-12'),
+    ('Lucas Pereira', 'CPF555555', '1990-09-03'),
+    ('Julia Martins', 'CPF666666', '1987-04-25'),
+    ('Marcos Lima', 'CPF777777', '1995-12-08'),
+    ('Camila Rocha', 'CPF888888', '1983-11-17'),
+    ('Felipe Almeida', 'CPF999999', '1975-03-30'),
+    ('Amanda Barbosa', 'CPF101010', '1998-06-22'),
+    ('Rafaela Gonçalves', 'CPF111111', '1982-08-18'),
+    ('Daniel Fernandes', 'CPF121212', '1993-01-09'),
+    ('Gustavo Oliveira', 'CPF131313', '1976-04-14'),
+    ('Laura Silva', 'CPF141414', '1989-07-07'),
+    ('Mateus Costa', 'CPF151515', '1991-09-28'),
+    ('Bianca Pereira', 'CPF161616', '1984-12-03'),
+    ('Rodrigo Lima', 'CPF171717', '1997-02-10'),
+    ('Carla Rocha', 'CPF181818', '1981-06-05'),
+    ('Luciana Almeida', 'CPF191919', '1994-08-15'),
+    ('Vinicius Barbosa', 'CPF202020', '1979-11-20');
+
+-- Populate Aplicacao table
+INSERT INTO public.aplicacao (data, codigoPessoa, codigoVacina) 
+VALUES 
+    ('2023-01-15', 1, 5),
+    ('2023-02-20', 2, 8),
+    ('2023-03-05', 3, 12),
+    ('2023-04-10', 4, 16),
+    ('2023-05-25', 5, 1),
+    ('2023-06-30', 6, 4),
+    ('2023-07-12', 7, 9),
+    ('2023-08-18', 8, 13),
+    ('2023-09-03', 9, 17),
+    ('2023-10-08', 10, 20),
+    ('2023-11-15', 11, 2),
+    ('2023-12-20', 12, 6),
+    ('2024-01-05', 13, 10),
+    ('2024-02-10', 14, 14),
+    ('2024-03-25', 15, 18),
+    ('2024-04-30', 16, 3),
+    ('2024-05-12', 17, 7),
+    ('2024-06-18', 18, 11),
+    ('2024-07-03', 19, 15),
+    ('2024-08-10', 20, 19);
