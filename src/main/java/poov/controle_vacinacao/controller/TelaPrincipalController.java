@@ -94,7 +94,8 @@ public class TelaPrincipalController implements Initializable {
         } catch (NumberFormatException e) {
         } finally {
             Pessoa searchPessoa = new Pessoa(codigo, textFieldNomePessoa.getText(), textFieldCPFPessoa.getText(), null);
-            buildPessoaTable(searchPessoa);
+            buildPessoaTable(searchPessoa, datePickerDataNascimentoRange0Pessoa.getValue(),
+                    datePickerDataNascimentoRange1Pessoa.getValue());
         }
     }
 
@@ -177,14 +178,14 @@ public class TelaPrincipalController implements Initializable {
         }
     }
 
-    void buildPessoaTable(Pessoa searchPessoa) {
+    void buildPessoaTable(Pessoa searchPessoa, LocalDate fromDataNascimento, LocalDate toDataNascimento) {
         try {
             ObservableList<Pessoa> tbList = tableViewPessoa.getItems();
             tbList.clear();
-            if (searchPessoa == null)
+            if (searchPessoa == null && fromDataNascimento != null)
                 tbList.addAll(pessoaDAO.buscarTodas());
             else
-                tbList.addAll(pessoaDAO.buscarComFiltro(searchPessoa));
+                tbList.addAll(pessoaDAO.buscarComFiltro(searchPessoa, fromDataNascimento, toDataNascimento));
         } catch (SQLException e) {
             DAOFactory.mostrarSQLException(e);
         }
@@ -208,7 +209,7 @@ public class TelaPrincipalController implements Initializable {
         tableColumnCPFPessoa.setCellValueFactory(new PropertyValueFactory<Pessoa, String>("cpf"));
         tableColumnDataNascimentoPessoa
                 .setCellValueFactory(new PropertyValueFactory<Pessoa, LocalDate>("dataNascimento"));
-        buildPessoaTable(null);
+        buildPessoaTable(null, null, null);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaSecundaria.fxml"));
         Parent root;

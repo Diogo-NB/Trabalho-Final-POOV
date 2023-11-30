@@ -1,10 +1,12 @@
 package poov.controle_vacinacao.modelo.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,24 +36,38 @@ public class PessoaDAO {
         return pessoas;
     }
 
-    public List<Pessoa> buscarComFiltro(Pessoa pessoaFiltro) throws SQLException {
+    public List<Pessoa> buscarComFiltro(Pessoa pessoaFiltro, LocalDate fromDataNasc, LocalDate toDataNasc)
+            throws SQLException {
         Pessoa p;
         List<Pessoa> pessoas = new ArrayList<>();
         // Construindo a string do sql "dinamicamente"
         StringBuilder sql = new StringBuilder("SELECT * FROM pessoa WHERE situacao = 'ATIVO'");
 
-        Long codigo = pessoaFiltro.getCodigo();
-        if (codigo != null)
-            sql.append(" AND codigo = ?");
+        Long codigo = null;
+        String cpf = "";
+        String nome = "";
 
-        String nome = pessoaFiltro.getNome().trim();
-        if (!nome.isEmpty())
-            sql.append(" AND nome ILIKE ?");
+        if (pessoaFiltro != null) {
+            codigo = pessoaFiltro.getCodigo();
+            cpf = pessoaFiltro.getCpf().trim();
+            nome = pessoaFiltro.getNome().trim();
+            if (codigo != null)
+                sql.append(" AND codigo = ?");
 
-        String cpf = pessoaFiltro.getCpf().trim();
-        if (!cpf.isEmpty())
-            sql.append(" AND cpf ILIKE ?");
-        //sql.append("AND '[2014-02-01, 2030-03-01]'::daterange @> dataNascimento");    
+            if (!nome.isEmpty())
+                sql.append(" AND nome ILIKE ?");
+
+            if (!cpf.isEmpty())
+                sql.append(" AND cpf ILIKE ?");
+        }
+
+        if (fromDataNasc != null)
+            sql.append(" AND datanascimento >= ?");
+
+        if (toDataNasc != null)
+            sql.append(" AND datanascimento <= ?");
+
+        // sql.append("AND '[2014-02-01, 2030-03-01]'::daterange @> dataNascimento");
         sql.append(";");
 
         PreparedStatement pstmt = conexao.prepareStatement(sql.toString());
@@ -69,6 +85,16 @@ public class PessoaDAO {
 
         if (!cpf.isEmpty()) {
             pstmt.setString(i, '%' + cpf + '%');
+            i++;
+        }
+
+        if (fromDataNasc != null) {
+            pstmt.setDate(i, Date.valueOf(fromDataNasc));
+            i++;
+        }
+
+        if (toDataNasc != null) {
+            pstmt.setDate(i, Date.valueOf(toDataNasc));
             i++;
         }
 
