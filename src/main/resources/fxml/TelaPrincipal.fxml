@@ -42,7 +42,7 @@
           <TableColumn fx:id="tableColumnCodigoPessoa" prefWidth="75.0" text="Código" />
           <TableColumn fx:id="tableColumnNomePessoa" prefWidth="132.0" text="Nome" />
             <TableColumn fx:id="tableColumnCPFPessoa" prefWidth="130.0" text="CPF" />
-            <TableColumn fx:id="tableColumnDataNascimentoPessoa" prefWidth="158.0" text="Data de nascimento" />
+            <TableColumn fx:id="tableColumnDataNascimentoPessoa" prefWidth="188.0" text="Data de nascimento" />
         </columns>
       </TableView>
       <Button fx:id="buttonPesquisarPessoa" layoutX="441.0" layoutY="140.0" mnemonicParsing="false" onAction="#onPesquisarPessoa" text="Pesquisar" />
@@ -62,5 +62,6 @@
       <Label layoutX="56.0" layoutY="160.0" text="Data de nascimento:" />
       <Label layoutX="55.0" layoutY="194.0" text="A partir de:" />
       <Label layoutX="97.0" layoutY="225.0" text="Até:" />
+      <Button fx:id="buttonCriarAplicacao" layoutX="593.0" layoutY="612.0" mnemonicParsing="false" onAction="#onCriarAplicacao" text="Criar aplicação" />
    </children>
 </AnchorPane>

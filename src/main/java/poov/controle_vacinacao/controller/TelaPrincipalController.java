@@ -114,8 +114,7 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     void onEditarVacina(ActionEvent event) {
-        System.out.println(datePickerDataNascimentoRange0Pessoa.getValue() + "Até: "
-                + datePickerDataNascimentoRange1Pessoa.getValue());
+
     }
 
     // Remover vacina
@@ -152,6 +151,21 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     private DatePicker datePickerDataNascimentoRange1Pessoa;
+
+    // Aplicação
+    @FXML
+    private Button buttonCriarAplicacao;
+
+    @FXML
+    void onCriarAplicacao() {
+        Pessoa pessoaSelecionada = tableViewPessoa.getSelectionModel().getSelectedItem();
+        Vacina vacinaSelecionada = tableViewVacina.getSelectionModel().getSelectedItem();
+
+        if (pessoaSelecionada != null && vacinaSelecionada != null) {
+            System.out.println(pessoaSelecionada + "\n" + vacinaSelecionada);
+        }
+
+    }
 
     private Stage stageTelaSecundaria;
 
