@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import poov.controle_vacinacao.modelo.Aplicacao;
 import poov.controle_vacinacao.modelo.Pessoa;
 import poov.controle_vacinacao.modelo.Vacina;
 import poov.controle_vacinacao.modelo.dao.ConexaoFactory;
@@ -163,8 +164,10 @@ public class TelaPrincipalController implements Initializable {
 
         if (pessoaSelecionada != null && vacinaSelecionada != null) {
             System.out.println(pessoaSelecionada + "\n" + vacinaSelecionada);
-        }
 
+            Aplicacao aplicacao = new Aplicacao(LocalDate.now(), pessoaSelecionada, vacinaSelecionada);
+            System.out.println("Teste:" + aplicacao);
+        }
     }
 
     private Stage stageTelaSecundaria;
