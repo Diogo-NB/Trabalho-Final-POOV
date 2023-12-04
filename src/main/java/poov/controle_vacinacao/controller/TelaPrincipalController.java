@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import poov.controle_vacinacao.modelo.Aplicacao;
 import poov.controle_vacinacao.modelo.Pessoa;
 import poov.controle_vacinacao.modelo.Vacina;
+import poov.controle_vacinacao.modelo.dao.AplicacaoDAO;
 import poov.controle_vacinacao.modelo.dao.ConexaoFactory;
 import poov.controle_vacinacao.modelo.dao.DAOFactory;
 import poov.controle_vacinacao.modelo.dao.PessoaDAO;
@@ -166,17 +167,25 @@ public class TelaPrincipalController implements Initializable {
             System.out.println(pessoaSelecionada + "\n" + vacinaSelecionada);
 
             Aplicacao aplicacao = new Aplicacao(LocalDate.now(), pessoaSelecionada, vacinaSelecionada);
-            System.out.println("Teste:" + aplicacao);
+            try {
+                aplicacaoDAO.gravar(aplicacao);
+            } catch (SQLException e) {
+            }
+
         }
     }
 
     private Stage stageTelaSecundaria;
+
+    // DAO's e conexao para o banco de dados
 
     private final Connection conexao = ConexaoFactory.getConexao();
 
     private VacinaDAO vacinaDAO;
 
     private PessoaDAO pessoaDAO;
+
+    private AplicacaoDAO aplicacaoDAO;
 
     public TelaPrincipalController() {
         System.out.println("TelaPrincipalController criado");
@@ -213,6 +222,7 @@ public class TelaPrincipalController implements Initializable {
         // Inicialização dos DAOs
         vacinaDAO = new VacinaDAO(conexao);
         pessoaDAO = new PessoaDAO(conexao);
+        aplicacaoDAO = new AplicacaoDAO(conexao);
 
         // Inicialização da tabela vacinas
         tableColumnCodigoVacina.setCellValueFactory(new PropertyValueFactory<Vacina, Long>("codigo"));

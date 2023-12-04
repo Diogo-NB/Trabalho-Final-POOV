@@ -37,28 +37,20 @@ public class Aplicacao {
         this.codigo = codigo;
     }
 
+    public Long getCodigoPessoa() {
+        return pessoa.getCodigo();
+    }
+
+    public Long getCodigoVacina() {
+        return vacina.getCodigo();
+    }
+
     public LocalDate getData() {
         return data;
     }
 
     public void setData(LocalDate data) {
         this.data = data;
-    }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-
-    public Vacina getVacina() {
-        return vacina;
-    }
-
-    public void setVacina(Vacina vacina) {
-        this.vacina = vacina;
     }
 
     public Situacao getSituacao() {
