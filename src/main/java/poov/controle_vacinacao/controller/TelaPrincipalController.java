@@ -31,6 +31,7 @@ import poov.controle_vacinacao.modelo.dao.ConexaoFactory;
 import poov.controle_vacinacao.modelo.dao.DAOFactory;
 import poov.controle_vacinacao.modelo.dao.PessoaDAO;
 import poov.controle_vacinacao.modelo.dao.VacinaDAO;
+import poov.controle_vacinacao.utils.TextFieldFormatters;
 
 public class TelaPrincipalController implements Initializable {
 
@@ -223,6 +224,11 @@ public class TelaPrincipalController implements Initializable {
         vacinaDAO = new VacinaDAO(conexao);
         pessoaDAO = new PessoaDAO(conexao);
         aplicacaoDAO = new AplicacaoDAO(conexao);
+
+        // Setando formatters
+        textFieldCodigoPessoa.setTextFormatter(TextFieldFormatters.apenasDigitos());
+        textFieldCodigoVacina.setTextFormatter(TextFieldFormatters.apenasDigitos());
+        textFieldCPFPessoa.setTextFormatter(TextFieldFormatters.apenasDigitos());
 
         // Inicialização da tabela vacinas
         tableColumnCodigoVacina.setCellValueFactory(new PropertyValueFactory<Vacina, Long>("codigo"));
