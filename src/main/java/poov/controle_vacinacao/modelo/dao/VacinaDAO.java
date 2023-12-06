@@ -27,7 +27,6 @@ public class VacinaDAO {
         pstmt.setString(2, vacina.getDescricao());
 
         if (pstmt.executeUpdate() == 1) {
-            System.out.println("Insercao da vacina feita com sucesso");
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 vacina.setCodigo(rs.getLong(1));

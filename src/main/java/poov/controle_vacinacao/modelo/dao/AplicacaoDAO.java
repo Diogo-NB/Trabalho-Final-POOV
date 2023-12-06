@@ -51,7 +51,6 @@ public class AplicacaoDAO {
         pstmt.setLong(3, aplicacao.getCodigoVacina());
 
         if (pstmt.executeUpdate() == 1) {
-            System.out.println("Insercao da aplicacao feita com sucesso");
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 aplicacao.setCodigo(rs.getLong(1));

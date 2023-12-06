@@ -77,7 +77,7 @@ public class TelaPrincipalController implements Initializable {
     private Button buttonPesquisarVacina;
 
     @FXML
-    void onPesquisarVacina(ActionEvent event) {
+    void onPesquisarVacina() {
         Long codigo = null;
         try {
             codigo = Long.parseLong(textFieldCodigoVacina.getText());
@@ -96,7 +96,7 @@ public class TelaPrincipalController implements Initializable {
     private Button buttonPesquisarPessoa;
 
     @FXML
-    void onPesquisarPessoa(ActionEvent event) {
+    void onPesquisarPessoa() {
         Long codigo = null;
         try {
             codigo = Long.parseLong(textFieldCodigoPessoa.getText());
@@ -114,7 +114,9 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     void onNovaVacina(ActionEvent event) {
+        novaVacinaController.limparFields();
         stageTelaNovaVacina.showAndWait();
+        buildVacinaTable(null); // Atualizar a tabela
     }
 
     // Editar vacina
@@ -171,8 +173,6 @@ public class TelaPrincipalController implements Initializable {
         Vacina vacinaSelecionada = tableViewVacina.getSelectionModel().getSelectedItem();
 
         if (pessoaSelecionada != null && vacinaSelecionada != null) {
-            System.out.println(pessoaSelecionada + "\n" + vacinaSelecionada);
-
             Aplicacao aplicacao = new Aplicacao(LocalDate.now(), pessoaSelecionada, vacinaSelecionada);
 
             Alert alert = new Alert(
@@ -212,6 +212,7 @@ public class TelaPrincipalController implements Initializable {
         }
     }
 
+    // Stage e controller da página de nova vacina, para comunicação entre telas
     private Stage stageTelaNovaVacina;
 
     // DAO's e conexao para o banco de dados
@@ -224,8 +225,10 @@ public class TelaPrincipalController implements Initializable {
 
     private AplicacaoDAO aplicacaoDAO;
 
+    private TelaNovaVacinaController novaVacinaController;
+
     public TelaPrincipalController() {
-        System.out.println("TelaPrincipalController criado");
+
     }
 
     void buildVacinaTable(Vacina searchVacina) {
@@ -317,7 +320,8 @@ public class TelaPrincipalController implements Initializable {
             stageTelaNovaVacina.setResizable(false);
             stageTelaNovaVacina.getIcons().add(new Image(getClass().getResourceAsStream("/images/java.png")));
             stageTelaNovaVacina.initModality(Modality.APPLICATION_MODAL);
-
+            novaVacinaController = loader.getController();
+            novaVacinaController.setVacinaDAO(vacinaDAO);
         } catch (IOException e) {
             e.printStackTrace();
         }
