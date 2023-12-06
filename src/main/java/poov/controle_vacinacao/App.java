@@ -17,7 +17,7 @@ public class App extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/TelaPrincipal.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Programa 14 - Tela 1");
+        stage.setTitle("CRUD - Vacina");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/java.png")));
         stage.show();
     }
