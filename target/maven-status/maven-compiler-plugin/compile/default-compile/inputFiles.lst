@@ -4,11 +4,11 @@
 /home/diogo/Documents/Trabalho-Final-POOV/src/main/java/module-info.java
 /home/diogo/Documents/Trabalho-Final-POOV/src/main/java/poov/controle_vacinacao/utils/TextFieldFormatters.java
 /home/diogo/Documents/Trabalho-Final-POOV/src/main/java/poov/controle_vacinacao/modelo/dao/AplicacaoDAO.java
-/home/diogo/Documents/Trabalho-Final-POOV/src/main/java/poov/controle_vacinacao/controller/TelaSecundariaController.java
 /home/diogo/Documents/Trabalho-Final-POOV/src/main/java/poov/controle_vacinacao/modelo/dao/PessoaDAO.java
 /home/diogo/Documents/Trabalho-Final-POOV/src/main/java/poov/controle_vacinacao/controller/TelaPrincipalController.java
 /home/diogo/Documents/Trabalho-Final-POOV/src/main/java/poov/controle_vacinacao/modelo/dao/DAOFactory.java
 /home/diogo/Documents/Trabalho-Final-POOV/src/main/java/poov/controle_vacinacao/modelo/dao/VacinaDAO.java
+/home/diogo/Documents/Trabalho-Final-POOV/src/main/java/poov/controle_vacinacao/controller/TelaNovaVacinaController.java
 /home/diogo/Documents/Trabalho-Final-POOV/src/main/java/poov/controle_vacinacao/App.java
 /home/diogo/Documents/Trabalho-Final-POOV/src/main/java/poov/controle_vacinacao/modelo/Aplicacao.java
 /home/diogo/Documents/Trabalho-Final-POOV/src/main/java/poov/controle_vacinacao/modelo/Vacina.java

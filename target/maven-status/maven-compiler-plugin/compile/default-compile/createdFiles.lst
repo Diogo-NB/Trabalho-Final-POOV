@@ -1,5 +1,4 @@
 poov/controle_vacinacao/modelo/dao/DAOFactory.class
-poov/controle_vacinacao/controller/TelaSecundariaController.class
 poov/controle_vacinacao/modelo/dao/VacinaDAO.class
 poov/controle_vacinacao/modelo/Vacina.class
 module-info.class

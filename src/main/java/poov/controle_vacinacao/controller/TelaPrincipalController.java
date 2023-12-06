@@ -211,7 +211,7 @@ public class TelaPrincipalController implements Initializable {
         }
     }
 
-    private Stage stageTelaSecundaria;
+    private Stage stageTelaNovaVacina;
 
     // DAO's e conexao para o banco de dados
 
@@ -305,15 +305,15 @@ public class TelaPrincipalController implements Initializable {
 
         buildPessoaTable(null, null, null);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaSecundaria.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaNovaVacina.fxml"));
         Parent root;
         try {
             root = loader.load();
             Scene scene = new Scene(root);
-            stageTelaSecundaria = new Stage();
-            stageTelaSecundaria.setScene(scene);
-            stageTelaSecundaria.setTitle("CRUD - Vacina");
-            stageTelaSecundaria.getIcons().add(new Image(getClass().getResourceAsStream("/images/java.png")));
+            stageTelaNovaVacina = new Stage();
+            stageTelaNovaVacina.setScene(scene);
+            stageTelaNovaVacina.setTitle("CRUD - Vacina");
+            stageTelaNovaVacina.getIcons().add(new Image(getClass().getResourceAsStream("/images/java.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
