@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import poov.controle_vacinacao.modelo.Aplicacao;
 import poov.controle_vacinacao.modelo.Pessoa;
@@ -113,7 +114,7 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     void onNovaVacina(ActionEvent event) {
-        System.out.println("Nova");
+        stageTelaNovaVacina.showAndWait();
     }
 
     // Editar vacina
@@ -312,8 +313,11 @@ public class TelaPrincipalController implements Initializable {
             Scene scene = new Scene(root);
             stageTelaNovaVacina = new Stage();
             stageTelaNovaVacina.setScene(scene);
-            stageTelaNovaVacina.setTitle("CRUD - Vacina");
+            stageTelaNovaVacina.setTitle("Nova Vacina");
+            stageTelaNovaVacina.setResizable(false);
             stageTelaNovaVacina.getIcons().add(new Image(getClass().getResourceAsStream("/images/java.png")));
+            stageTelaNovaVacina.initModality(Modality.APPLICATION_MODAL);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
