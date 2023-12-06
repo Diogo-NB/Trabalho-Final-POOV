@@ -128,13 +128,8 @@ public class VacinaDAO {
         int resultado = pstmtUpd.executeUpdate();
 
         if (resultado == 1) {
-            // System.out.println("Remocao da vacina executada com sucesso");
             retorno = true;
         }
-        // else {
-        // System.out.println("Erro removendo a vacina com codigo: " +
-        // vacina.getCodigo());
-        // }
 
         pstmtUpd.close();
 

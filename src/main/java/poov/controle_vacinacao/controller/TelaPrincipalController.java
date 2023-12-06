@@ -134,7 +134,33 @@ public class TelaPrincipalController implements Initializable {
 
     @FXML
     void onRemoverVacina(ActionEvent event) {
-        System.out.println("Remover");
+        Vacina vacinaSelecionada = tableViewVacina.getSelectionModel().getSelectedItem();
+
+        if (vacinaSelecionada == null) {
+            Alert alert = new Alert(AlertType.ERROR, "Não foi selecionada nenhuma vacina");
+            alert.setTitle("Erro na remoção da vacina");
+            alert.showAndWait();
+            return;
+        }
+
+        Alert alert = new Alert(AlertType.CONFIRMATION,
+                "Deseja remover a seguinte vacina?\n" + vacinaSelecionada.toString(), ButtonType.CANCEL,
+                ButtonType.YES);
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.YES) {
+                try {
+                    vacinaDAO.remover(vacinaSelecionada);
+                    // Confirmação de sucesso para o usuário
+                    (new Alert(AlertType.INFORMATION, "Vacina removida com sucesso!")).showAndWait();
+                    buildVacinaTable(null);
+                } catch (SQLException e) {
+                    // Alertar sobre o erro para o usuário
+                    (new Alert(AlertType.ERROR,
+                            "Erro na remoção da vacina, certifique-se da conexão com o banco de dados"))
+                            .showAndWait();
+                }
+            }
+        });
     }
 
     // Text fields/areas vacina
