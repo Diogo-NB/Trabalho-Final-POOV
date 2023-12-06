@@ -12,8 +12,8 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return nome + " {\ncodigo: " + codigo + ",\ncpf: " + cpf + ",\ndataNascimento: "
-                + dataNascimento + ",\nsituacao: " + situacao + "\n}\n";
+        return "Nome: " +nome + " \nCódigo: " + codigo + ",\nCPF: " + cpf + ",\nData de nascimento: "
+                + dataNascimento + "\n";
     }
 
     public Pessoa(){

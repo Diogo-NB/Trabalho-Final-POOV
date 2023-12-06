@@ -4,7 +4,7 @@ import javafx.scene.control.TextFormatter;
 
 public class TextFieldFormatters {
 
-    /// Retorna um novo formatter que aceita apenas digitos
+    /// Retorna um novo formatter de String que aceita apenas digitos
     public static TextFormatter<String> apenasDigitos() {
         return new TextFormatter<>(change -> {
             if (!change.isContentChange())
