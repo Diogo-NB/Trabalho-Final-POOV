@@ -33,10 +33,6 @@ public class TelaNovaVacinaController {
         this.vacinaDAO = vacinaDAO;
     }
 
-    public TelaNovaVacinaController() {
-        System.out.println("TelaNovaVacinaController criado");
-    }
-
     public void limparFields(){
         textAreaDescricao.setText("");
         textFieldNome.setText("");

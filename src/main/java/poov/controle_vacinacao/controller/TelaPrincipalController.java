@@ -277,10 +277,6 @@ public class TelaPrincipalController implements Initializable {
 
     private TelaNovaVacinaController novaVacinaController;
 
-    public TelaPrincipalController() {
-
-    }
-
     void buildVacinaTable(Vacina searchVacina) {
         try {
             ObservableList<Vacina> tbList = tableViewVacina.getItems();
