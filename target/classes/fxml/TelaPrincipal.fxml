@@ -63,5 +63,7 @@
       <Label layoutX="55.0" layoutY="194.0" text="A partir de:" />
       <Label layoutX="97.0" layoutY="225.0" text="Até:" />
       <Button fx:id="buttonCriarAplicacao" layoutX="593.0" layoutY="612.0" mnemonicParsing="false" onAction="#onCriarAplicacao" text="Criar aplicação" />
+      <Button fx:id="buttonLimparPessoa" layoutX="423.0" layoutY="202.0" mnemonicParsing="false" onAction="#onLimparCamposPessoa" text="Limpar campos" />
+      <Button fx:id="buttonLimparVacina" layoutX="1124.0" layoutY="202.0" mnemonicParsing="false" onAction="#onLimparCamposVacina" text="Limpar campos" />
    </children>
 </AnchorPane>

@@ -108,6 +108,30 @@ public class TelaPrincipalController implements Initializable {
         }
     }
 
+    // Limpar campos pessoa
+    @FXML
+    private Button buttonLimparPessoa;
+
+    @FXML
+    void onLimparCamposPessoa() {
+        textFieldCodigoPessoa.setText(null);
+        textFieldCPFPessoa.setText(null);
+        textFieldNomePessoa.setText(null);
+        datePickerDataNascimentoRange0Pessoa.setValue(null);
+        datePickerDataNascimentoRange1Pessoa.setValue(null);
+    }
+
+    // Limpar campos vacina
+    @FXML
+    private Button buttonLimparVacina;
+
+    @FXML
+    void onLimparCamposVacina() {
+        textAreaDescricaoVacina.setText(null);
+        textFieldCodigoVacina.setText(null);
+        textFieldNomeVacina.setText(null);
+    }
+
     // Nova vacina
     @FXML
     private Button buttonNovaVacina;
