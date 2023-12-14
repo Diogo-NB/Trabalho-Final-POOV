@@ -18,9 +18,12 @@ import javafx.stage.Stage;
 import poov.controle_vacinacao.modelo.Vacina;
 import poov.controle_vacinacao.modelo.dao.VacinaDAO;
 
-public class TelaEditarVacinaController implements Initializable{
+public class TelaEditarVacinaController implements Initializable {
 
     // Text fields/areas vacina
+    @FXML
+    private TextField textFieldCodigo;
+
     @FXML
     private TextArea textAreaDescricao;
 
@@ -30,14 +33,23 @@ public class TelaEditarVacinaController implements Initializable{
     @FXML
     private Button buttonConfirmar;
 
+    @FXML
+    private Button buttonResetar;
+
     private VacinaDAO vacinaDAO;
 
     public void setVacinaDAO(VacinaDAO vacinaDAO) {
         this.vacinaDAO = vacinaDAO;
     }
 
+    @FXML
+    public void onResetar() {
+        setVacina(vacina);
+    }
+
     public void limpar() {
         vacina = null;
+        textFieldCodigo.setText("");
         textAreaDescricao.setText("");
         textFieldNome.setText("");
     }
@@ -53,6 +65,7 @@ public class TelaEditarVacinaController implements Initializable{
             throw new IllegalArgumentException("Vacina inválida!");
 
         this.vacina = vacina;
+        textFieldCodigo.setText(vacina.getCodigo().toString());
         textAreaDescricao.setText(vacina.getDescricao());
         textFieldNome.setText(vacina.getNome());
     }
@@ -60,24 +73,27 @@ public class TelaEditarVacinaController implements Initializable{
     @FXML
     private void onConfirmar(ActionEvent event) {
 
-        if (vacina.getNome().isBlank()) {
+        Vacina vacinaEditada = new Vacina(vacina.getCodigo(), textFieldNome.getText(), textAreaDescricao.getText());
+
+        if (vacinaEditada.getNome().isBlank()) {
             Alert alert = new Alert(AlertType.ERROR, "O campo de nome da vacina não pode ser vazio");
             alert.setTitle("Erro na edição da vacina");
             alert.showAndWait();
+            textFieldNome.setText(vacina.getNome());
             return;
         }
 
-        String alertText = "Confirmar edição?\nVacina modificada: \nNome: " + vacina.getNome() + "\nDescrição: "
-                + vacina.getDescricao() + "\n";
+        String alertText = "Confirmar edição?\nVacina modificada: \nNome: " + vacinaEditada.getNome() + "\nDescrição: "
+                + vacinaEditada.getDescricao() + "\n";
 
-        if (vacina.getDescricao().isBlank())
+        if (vacinaEditada.getDescricao().isBlank())
             alertText += "Observação: O campo de descrição da vacina está vazio, proceder mesmo assim?";
 
         Alert alert = new Alert(AlertType.CONFIRMATION, alertText, ButtonType.YES, ButtonType.CANCEL);
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
                 try {
-                    vacinaDAO.atualizar(vacina);
+                    vacinaDAO.atualizar(vacinaEditada);
                     // Confirmação de sucesso para o usuário
                     (new Alert(AlertType.INFORMATION, "Vacina editada com sucesso!")).showAndWait();
                 } catch (SQLException e) {
