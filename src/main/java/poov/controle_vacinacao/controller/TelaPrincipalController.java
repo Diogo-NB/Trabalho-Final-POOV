@@ -29,6 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 import poov.controle_vacinacao.modelo.Aplicacao;
 import poov.controle_vacinacao.modelo.Pessoa;
 import poov.controle_vacinacao.modelo.Vacina;
@@ -84,9 +85,6 @@ public class TelaPrincipalController implements Initializable {
         } catch (NumberFormatException e) {
         } finally {
             Vacina searchVacina = new Vacina(codigo, textFieldNomeVacina.getText(), textAreaDescricaoVacina.getText());
-            // searchVacina.setNome(textFieldNomeVacina.getText());
-            // searchVacina.setDescricao(textAreaDescricaoVacina.getText());
-            // System.out.println("Vacina de filtro: " + searchVacina);
             buildVacinaTable(searchVacina);
         }
     }
@@ -150,6 +148,15 @@ public class TelaPrincipalController implements Initializable {
     @FXML
     void onEditarVacina(ActionEvent event) {
 
+        try {
+            editarVacinaController.setVacina(tableViewVacina.getSelectionModel().getSelectedItem());
+            stageTelaEditarVacina.showAndWait();
+            editarVacinaController.limpar();
+            buildVacinaTable(null); // Atualizar a tabela
+        } catch (IllegalArgumentException e) {
+            Alert alert = new Alert(AlertType.WARNING, "Selecione uma vacina válida!");
+            alert.showAndWait();
+        }
     }
 
     // Remover vacina
@@ -265,6 +272,9 @@ public class TelaPrincipalController implements Initializable {
     // Stage e controller da página de nova vacina, para comunicação entre telas
     private Stage stageTelaNovaVacina;
 
+    // Stage e controller da página de editar vacina, para comunicação entre telas
+    private Stage stageTelaEditarVacina;
+
     // DAO's e conexao para o banco de dados
 
     private final Connection conexao = ConexaoFactory.getConexao();
@@ -276,6 +286,8 @@ public class TelaPrincipalController implements Initializable {
     private AplicacaoDAO aplicacaoDAO;
 
     private TelaNovaVacinaController novaVacinaController;
+
+    private TelaEditarVacinaController editarVacinaController;
 
     void buildVacinaTable(Vacina searchVacina) {
         try {
@@ -345,7 +357,6 @@ public class TelaPrincipalController implements Initializable {
                     }
                 }
             };
-            // cell.setStyle("-fx-alignment: CENTER");
             return cell;
         });
 
@@ -355,22 +366,44 @@ public class TelaPrincipalController implements Initializable {
 
         buildPessoaTable(null, null, null);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaNovaVacina.fxml"));
-        Parent root;
         try {
-            root = loader.load();
-            Scene scene = new Scene(root);
-            stageTelaNovaVacina = new Stage();
-            stageTelaNovaVacina.setScene(scene);
-            stageTelaNovaVacina.setTitle("Nova Vacina");
-            stageTelaNovaVacina.setResizable(false);
-            stageTelaNovaVacina.getIcons().add(new Image(getClass().getResourceAsStream("/images/java.png")));
-            stageTelaNovaVacina.initModality(Modality.APPLICATION_MODAL);
-            novaVacinaController = loader.getController();
-            novaVacinaController.setVacinaDAO(vacinaDAO);
+            setStages();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void setStages() throws IOException {
+
+        // Stage tela nova vacina
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/TelaNovaVacina.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root); // Cena tela nova vacina
+
+        stageTelaNovaVacina = new Stage();
+        stageTelaNovaVacina.setScene(scene);
+        stageTelaNovaVacina.setTitle("Nova Vacina");
+        stageTelaNovaVacina.setResizable(false);
+        stageTelaNovaVacina.getIcons().add(new Image(getClass().getResourceAsStream("/images/java.png")));
+        stageTelaNovaVacina.initModality(Modality.APPLICATION_MODAL);
+        novaVacinaController = loader.getController();
+        novaVacinaController.setVacinaDAO(vacinaDAO);
+
+        // Stage tela editar vacina
+        loader = new FXMLLoader(getClass().getResource("/fxml/TelaEditarVacina.fxml"));
+        root = loader.load();
+        scene = new Scene(root); // Cena tela nova vacina
+
+        stageTelaEditarVacina = new Stage();
+        stageTelaEditarVacina.setScene(scene);
+        stageTelaEditarVacina.setTitle("Editar Vacina");
+        stageTelaEditarVacina.setResizable(false);
+        stageTelaEditarVacina.getIcons().add(new Image(getClass().getResourceAsStream("/images/java.png")));
+        stageTelaEditarVacina.initModality(Modality.APPLICATION_MODAL);
+        editarVacinaController = loader.getController();
+        editarVacinaController.setVacinaDAO(vacinaDAO);
+
     }
 
 }
