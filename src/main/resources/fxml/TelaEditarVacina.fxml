@@ -8,24 +8,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-   prefHeight="294.0" prefWidth="459.0" xmlns="http://javafx.com/javafx/21"
-   xmlns:fx="http://javafx.com/fxml/1"
-   fx:controller="poov.controle_vacinacao.controller.TelaEditarVacinaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="294.0" prefWidth="459.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poov.controle_vacinacao.controller.TelaEditarVacinaController">
    <children>
       <Label layoutX="40.0" layoutY="68.0" text="Nome:" />
-      <TextField fx:id="textFieldNome" layoutX="84.0" layoutY="64.0" prefHeight="24.0"
-         prefWidth="290.0" />
+      <TextField fx:id="textFieldNome" layoutX="84.0" layoutY="64.0" prefHeight="24.0" prefWidth="290.0" />
       <Label layoutX="14.0" layoutY="108.0" text="Descrição:" />
-      <TextArea fx:id="textAreaDescricao" layoutX="85.0" layoutY="108.0" prefHeight="107.0"
-         prefWidth="290.0" />
-      <Text layoutX="166.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0"
-         text="Editar Vacina" textAlignment="CENTER">
+      <TextArea fx:id="textAreaDescricao" layoutX="85.0" layoutY="108.0" maxHeight="107.0" maxWidth="290.0" minHeight="107.0" minWidth="290.0" prefHeight="107.0" prefWidth="290.0" />
+      <Text layoutX="166.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar Vacina" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Button fx:id="buttonConfirmar" layoutX="161.0" layoutY="241.0" mnemonicParsing="false"
-         onAction="#onConfirmar" text="Editar Vacina" />
+      <Button fx:id="buttonConfirmar" layoutX="161.0" layoutY="241.0" mnemonicParsing="false" onAction="#onConfirmar" text="Editar Vacina" />
    </children>
 </AnchorPane>

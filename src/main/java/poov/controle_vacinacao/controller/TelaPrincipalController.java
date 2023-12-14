@@ -332,6 +332,8 @@ public class TelaPrincipalController implements Initializable {
         tableColumnNomeVacina.setCellValueFactory(new PropertyValueFactory<Vacina, String>("nome"));
         tableColumnDescricaoVacina.setCellValueFactory(new PropertyValueFactory<Vacina, String>("descricao"));
 
+        textAreaDescricaoVacina.setWrapText(true);
+
         buildVacinaTable(null);
 
         // Inicialização da tabela pessoas
